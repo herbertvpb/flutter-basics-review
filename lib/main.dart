@@ -3,13 +3,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool opacity = true;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,28 +29,37 @@ class MyApp extends StatelessWidget {
           leading: Container(),
           title: Text('Flutter Tasks'),
         ),
-        body: ListView(
-          children: [
-            Task(
-              'Aprender Flutter',
-              'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-              4,
-            ),
-            Task(
-              'Aprender React',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png',
-              1,
-            ),
-            Task(
-              'Aprender Node',
-              'https://img1.gratispng.com/20180425/xeq/kisspng-node-js-javascript-web-application-express-js-comp-5ae0f84de7b809.1939946215246930699491.jpg',
-              3,
-            ),
-          ],
+        body: AnimatedOpacity(
+          opacity: opacity ? 1 : 0,
+          duration: Duration(milliseconds: 800),
+          child: ListView(
+            children: [
+              Task(
+                'Aprender Flutter',
+                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                4,
+              ),
+              Task(
+                'Aprender React',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png',
+                1,
+              ),
+              Task(
+                'Aprender Node',
+                'https://img1.gratispng.com/20180425/xeq/kisspng-node-js-javascript-web-application-express-js-comp-5ae0f84de7b809.1939946215246930699491.jpg',
+                3,
+              ),
+            ],
+          ),
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {},
-        // ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              opacity = !opacity;
+            });
+          },
+          child: Icon(Icons.remove_red_eye),
+        ),
       ),
     );
   }
@@ -169,27 +184,30 @@ class _TaskState extends State<Task> {
                         ],
                       ),
                       Container(
-                        width: 72,
-                        height: 72,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              level++;
-                            });
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.arrow_drop_up),
-                              Text(
-                                'UP',
-                                style: TextStyle(fontSize: 12),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                          width: 72,
+                          height: 72,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  level++;
+                                });
+                              },
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Icon(Icons.arrow_drop_up),
+                                  Text(
+                                    'UP',
+                                    style: TextStyle(fontSize: 12),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )),
                     ],
                   ),
                 ),
