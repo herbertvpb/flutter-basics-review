@@ -15,7 +15,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(),
+        leading: const Icon(Icons.add_task_rounded),
         title: const Text('Flutter Tasks'),
       ),
       body: AnimatedOpacity(
@@ -25,19 +25,22 @@ class _InitialScreenState extends State<InitialScreen> {
           children: const [
             Task(
               'Aprender Flutter',
-              'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+              'assets/images/flutter.png',
               4,
             ),
             Task(
               'Aprender React',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png',
+              'assets/images/react.png',
               1,
             ),
             Task(
               'Aprender Node',
-              'https://img1.gratispng.com/20180425/xeq/kisspng-node-js-javascript-web-application-express-js-comp-5ae0f84de7b809.1939946215246930699491.jpg',
+              'assets/images/node.png',
               3,
             ),
+            SizedBox(
+              height: 80,
+            )
           ],
         ),
       ),

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class Task extends StatefulWidget {
   final String description;
-  final String imageUrl;
+  final String image;
   final int difficulty;
 
-  const Task(this.description, this.imageUrl, this.difficulty, {super.key});
+  const Task(this.description, this.image, this.difficulty, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
@@ -54,8 +54,8 @@ class _TaskState extends State<Task> {
                           topLeft: Radius.circular(4),
                           bottomLeft: Radius.circular(4),
                         ),
-                        child: Image.network(
-                          widget.imageUrl,
+                        child: Image.asset(
+                          widget.image,
                           fit: BoxFit.cover,
                         ),
                       ),
