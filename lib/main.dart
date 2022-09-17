@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,15 +25,21 @@ class MyApp extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            Task('Aprender Flutter'),
-            Task('Aprender React'),
-            Task('Aprender Node'),
-            Task('Aprender Node'),
-            Task('Aprender Node'),
-            Task('Aprender Node'),
-            Task('Aprender Node'),
-            Task('Aprender Node'),
-            Task('Aprender Node'),
+            Task(
+              'Aprender Flutter',
+              'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+              4,
+            ),
+            Task(
+              'Aprender React',
+              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png',
+              1,
+            ),
+            Task(
+              'Aprender Node',
+              'https://img1.gratispng.com/20180425/xeq/kisspng-node-js-javascript-web-application-express-js-comp-5ae0f84de7b809.1939946215246930699491.jpg',
+              3,
+            ),
           ],
         ),
         // floatingActionButton: FloatingActionButton(
@@ -44,7 +52,10 @@ class MyApp extends StatelessWidget {
 
 class Task extends StatefulWidget {
   final String description;
-  const Task(this.description, {super.key});
+  final String imageUrl;
+  final int difficulty;
+
+  const Task(this.description, this.imageUrl, this.difficulty, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
@@ -76,16 +87,68 @@ class _TaskState extends State<Task> {
                         color: Colors.black26,
                         width: 72,
                         height: 100,
-                      ),
-                      Container(
-                        width: 200,
-                        child: Text(
-                          widget.description,
-                          style: TextStyle(
-                            fontSize: 24,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                        child: Image.network(
+                          widget.imageUrl,
+                          fit: BoxFit.cover,
                         ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 200,
+                            child: Text(
+                              widget.description,
+                              style: TextStyle(
+                                fontSize: 24,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  size: 15,
+                                  color: (widget.difficulty >= 1)
+                                      ? Colors.blue
+                                      : Colors.blue[100],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 15,
+                                  color: (widget.difficulty >= 2)
+                                      ? Colors.blue
+                                      : Colors.blue[100],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 15,
+                                  color: (widget.difficulty >= 3)
+                                      ? Colors.blue
+                                      : Colors.blue[100],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 15,
+                                  color: (widget.difficulty >= 4)
+                                      ? Colors.blue
+                                      : Colors.blue[100],
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  size: 15,
+                                  color: (widget.difficulty >= 5)
+                                      ? Colors.blue
+                                      : Colors.blue[100],
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                       Container(
                         width: 72,
@@ -121,7 +184,9 @@ class _TaskState extends State<Task> {
                         width: 200,
                         child: LinearProgressIndicator(
                           color: Colors.white,
-                          value: level / 10,
+                          value: (widget.difficulty > 0)
+                              ? (level / widget.difficulty) / 10
+                              : 1,
                         ),
                       ),
                       Text(
