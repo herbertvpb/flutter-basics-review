@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'package:first_app/difficult_stars.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,7 +21,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
@@ -141,45 +140,8 @@ class _TaskState extends State<Task> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.difficulty >= 1)
-                                      ? Colors.blue
-                                      : Colors.blue[100],
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.difficulty >= 2)
-                                      ? Colors.blue
-                                      : Colors.blue[100],
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.difficulty >= 3)
-                                      ? Colors.blue
-                                      : Colors.blue[100],
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.difficulty >= 4)
-                                      ? Colors.blue
-                                      : Colors.blue[100],
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.difficulty >= 5)
-                                      ? Colors.blue
-                                      : Colors.blue[100],
-                                ),
-                              ],
-                            ),
+                            child:
+                                DifficultyStars(difficulty: widget.difficulty),
                           )
                         ],
                       ),
