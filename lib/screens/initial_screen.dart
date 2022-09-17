@@ -1,14 +1,14 @@
-import 'package:first_app/task.dart';
+import 'package:first_app/components/task.dart';
 import 'package:flutter/material.dart';
 
-class InitialPage extends StatefulWidget {
-  const InitialPage({super.key});
+class InitialScreen extends StatefulWidget {
+  const InitialScreen({super.key});
 
   @override
-  State<InitialPage> createState() => _InitialPageState();
+  State<InitialScreen> createState() => _InitialScreenState();
 }
 
-class _InitialPageState extends State<InitialPage> {
+class _InitialScreenState extends State<InitialScreen> {
   bool opacity = true;
 
   @override
@@ -16,13 +16,13 @@ class _InitialPageState extends State<InitialPage> {
     return Scaffold(
       appBar: AppBar(
         leading: Container(),
-        title: Text('Flutter Tasks'),
+        title: const Text('Flutter Tasks'),
       ),
       body: AnimatedOpacity(
         opacity: opacity ? 1 : 0,
-        duration: Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 800),
         child: ListView(
-          children: [
+          children: const [
             Task(
               'Aprender Flutter',
               'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
@@ -47,7 +47,7 @@ class _InitialPageState extends State<InitialPage> {
             opacity = !opacity;
           });
         },
-        child: Icon(Icons.remove_red_eye),
+        child: const Icon(Icons.remove_red_eye),
       ),
     );
   }
