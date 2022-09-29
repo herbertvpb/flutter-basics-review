@@ -1,4 +1,4 @@
-import 'package:first_app/components/task.dart';
+import 'package:first_app/data/task_inherited.dart';
 import 'package:first_app/screens/form_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,33 +18,17 @@ class _InitialScreenState extends State<InitialScreen> {
         title: const Text('Flutter Tasks'),
       ),
       body: ListView(
-        children: const [
-          Task(
-            'Aprender Flutter',
-            'assets/images/flutter.png',
-            4,
-          ),
-          Task(
-            'Aprender React',
-            'assets/images/react.png',
-            1,
-          ),
-          Task(
-            'Aprender Node',
-            'assets/images/node.png',
-            3,
-          ),
-          SizedBox(
-            height: 80,
-          )
-        ],
+        children: TaskInherited.of(context).taskList,
+        padding: EdgeInsets.only(top: 8, bottom: 70),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const FormScreen(),
+              builder: (contextNew) => FormScreen(
+                taskContext: context,
+              ),
             ),
           );
         },
